@@ -42,7 +42,8 @@
 				title　: '自定义标题', 
 				width : 400, 
 				height : 300, 
-				maskcolor : 'pink'
+				maskcolor : 'pink',
+				maskopacity : 0.9
 			});
 		});
 	})
@@ -120,12 +121,9 @@ blockquote {
 <body>
 	<h2>jQuery MsgBox Plugin 提供四个插件方法：</h2>
 	<ol>
-		<li><a href="#mask"><code>jmask </code>遮罩层</a>
-		</li>
-		<li><a href="#unmask"><code>junmask </code>关闭遮罩层</a>
-		</li>
-		<li><a href="#jalert"><code>jalert </code>基于div的消息提醒框</a>
-		</li>
+		<li><a href="#mask"><code>jmask </code>遮罩层</a></li>
+		<li><a href="#unmask"><code>junmask </code>关闭遮罩层</a></li>
+		<li><a href="#jalert"><code>jalert </code>基于div的消息提醒框</a></li>
 		<li><a href="#jconfirm"><code>jconfirm </code>基于div的消息确认框</a></li>
 	</ol>
 
@@ -141,8 +139,7 @@ blockquote {
 			<p />
 			<table>
 				<tr>
-					<td width='80px'><strong>options</strong>
-					</td>
+					<td width='80px'><strong>options</strong></td>
 					<td><table class="table2">
 							<caption>该参数为对象类型。用来设置遮罩层默认全局属性</caption>
 							<tr>
@@ -154,11 +151,16 @@ blockquote {
 							<tr>
 								<td>bgcolor</td>
 								<td>string</td>
-								<td>'rgba(165, 165, 165, 0.8)'</td>
-								<td>遮罩层背景色.IE对不支持rgba</td>
+								<td>'#eee'</td>
+								<td>遮罩层背景色</td>
 							</tr>
-						</table>
-					</td>
+							<tr>
+								<td>opacity</td>
+								<td>float</td>
+								<td>0.8</td>
+								<td>遮罩层背景透明度透明度(0-1)</td>
+							</tr>
+						</table></td>
 				</tr>
 			</table>
 			<p>
@@ -176,7 +178,7 @@ blockquote {
 				<strong>Demo</strong>: <label>bgcolor:</label> <select id='_bgcolor'>
 					<option value=''>default</option>
 					<option value='pink'>pink</option>
-					<option value='rgba(22,233,233,0.6)'>rgba(22,233,233,0.6)</option>
+					<option value='rgb(22,233,233)'>rgba(22,233,233)</option>
 				</select>
 				<button id="jmask_Demo">Jmask Demo</button>
 			</p>
@@ -222,7 +224,7 @@ blockquote {
 				<code class="demo"> $("#jmaskDemo").junmask(); </code>
 			</blockquote>
 			<p id='s_code'>
-				<label  title="click me" onclick="presourcecode('unmask');">SourceCode:</label>
+				<label title="click me" onclick="presourcecode('unmask');">SourceCode:</label>
 			</p>
 			<div id='pre_code_unmask' class="pre_code">
 				<blockquote>
@@ -251,13 +253,11 @@ blockquote {
 			<p />
 			<table>
 				<tr>
-					<td width='80px'><strong>msg</strong>
-					</td>
+					<td width='80px'><strong>msg</strong></td>
 					<td>消息框显示的消息內容</td>
 				</tr>
 				<tr>
-					<td><strong>options</strong>
-					</td>
+					<td><strong>options</strong></td>
 					<td>
 						<table class="table2">
 							<caption>该参数为对象类型，用来设置消息框全局属性</caption>
@@ -294,10 +294,17 @@ blockquote {
 							<tr>
 								<td>maskcolor</td>
 								<td>string</td>
-								<td>'rgba(165, 165, 165, 0.8)'</td>
+								<td>'#eee'</td>
 								<td>遮罩层背景色。当mask为true时有效</td>
 							</tr>
-						</table></td>
+							<tr>
+								<td>maskopacity</td>
+								<td>float</td>
+								<td>0.8</td>
+								<td>遮罩层背景透明度(0-1)。当mask为true时有效</td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 			</table>
 			<p>
@@ -317,7 +324,7 @@ blockquote {
 
 			</p>
 			<p id='s_code'>
-				<label  title="click me" onclick="presourcecode('alert');">SourceCode:</label>
+				<label title="click me" onclick="presourcecode('alert');">SourceCode:</label>
 			</p>
 			<div id='pre_code_alert' class="pre_code">
 				<blockquote>
@@ -355,18 +362,16 @@ blockquote {
 			<p />
 			<table>
 				<tr>
-					<td width='80px'><strong>msg</strong>
-					</td>
+					<td width='80px'><strong>msg</strong></td>
 					<td>消息框显示的消息內容</td>
 				</tr>
 				<tr>
-					<td width='80px'><strong>url</strong>
+					<td width='80px'><strong>url</strong></td>
+					<td>消息确认后的跳转地址。使用<code>window.local.href</code>跳转
 					</td>
-					<td>消息确认后的跳转地址。使用<code>window.local.href</code>跳转</td>
 				</tr>
 				<tr>
-					<td><strong>options</strong>
-					</td>
+					<td><strong>options</strong></td>
 					<td>
 						<table class="table2">
 							<caption>该参数为对象类型，用来设置消息确认框全局属性</caption>
@@ -403,10 +408,17 @@ blockquote {
 							<tr>
 								<td>maskcolor</td>
 								<td>string</td>
-								<td>'rgba(165, 165, 165, 0.8)'</td>
+								<td>'#eee'</td>
 								<td>遮罩层背景色。当mask为true时有效</td>
 							</tr>
-						</table></td>
+							<tr>
+								<td>maskopacity</td>
+								<td>float</td>
+								<td>0.8</td>
+								<td>遮罩层背景透明度(0-1)。当mask为true时有效</td>
+							</tr>
+						</table>
+					</td>
 				</tr>
 			</table>
 			<p>
@@ -417,7 +429,7 @@ blockquote {
 					$("#jconfirmDemo").jconfirm('jconfirm demo
 					测试','http://www.163.com');<br />
 					$("#jconfirmDemo").jconfirm('jconfirm demo 测试',null,{ title :
-					'hello jconfirm', width : 400, height : 300, maskcolor : 'pink' });
+					'hello jconfirm', width : 400, height : 300, maskcolor : 'pink',maskopacity : 0.9 });
 				</code>
 			</blockquote>
 			<p>
@@ -427,7 +439,7 @@ blockquote {
 
 			</p>
 			<p id='s_code'>
-				<label  title="click me" onclick="presourcecode('confirm');">SourceCode:</label>
+				<label title="click me" onclick="presourcecode('confirm');">SourceCode:</label>
 			</p>
 			<div id='pre_code_confirm' class="pre_code">
 				<blockquote>
@@ -441,7 +453,8 @@ blockquote {
 				title　: '自定义标题', 
 				width : 400, 
 				height : 300, 
-				maskcolor : 'pink'
+				maskcolor : 'pink',
+				maskopacity : 0.9
 			});
 		});
 					</code>

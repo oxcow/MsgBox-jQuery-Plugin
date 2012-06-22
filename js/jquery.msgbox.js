@@ -13,7 +13,7 @@
 			"top" : "0px",
 			"left" : "0px",
 			"cursor" : "not-allowed",
-			"border-width" : '0px'
+			'border' : 'none'
 		}
 	};
 	// 消息框div私有属性
@@ -24,7 +24,10 @@
 			"position" : "absolute",
 			'border' : '2px solid #2484c2',
 			'background-color' : 'white',
-			'cursor' : 'default'
+			'cursor' : 'default',
+			'border-radius' : '8px',
+			'-moz-border-radius' : '8px',
+			'-webkit-border-radius' : '8px'
 		}
 	};
 	// 消息框标题头div私有属性
@@ -36,7 +39,7 @@
 			'background-color' : '#2484c2',
 			'line-height' : '26px',
 			'font-weight' : 'bold',
-			"border-width" : '0px'
+			'border' : 'none'
 		}
 
 	};
@@ -110,13 +113,14 @@
 				div_msg_box_bottom.css);
 	}
 
-	function mask(bgcolor) {
+	function mask(opts) {
 		var bwh = browser_width_high();
 		$mask = mask_div();
 		$mask.css({
 			"width" : Math.max(bwh.b_c_w, bwh.b_s_w),
 			"height" : Math.max(bwh.b_c_h, bwh.b_s_h),
-			"background-color" : bgcolor
+			"background-color" : opts.bgcolor,
+			"opacity":opts.opacity
 		});
 		return $mask;
 	}
@@ -174,7 +178,7 @@
 		return $('<a>' + name + '</a>').css(div_msg_box_btn.css).bind("click",
 				fn);
 	}
-
+	
 	// 浏览器宽、高 ,滚动条宽、高,滚动条滚动过的高、宽
 	function browser_width_high() {
 		return {
@@ -208,11 +212,12 @@
 			'left' : bwh.b_s_l + (bwh.b_c_w - this.width()) / 2,
 			'top' : bwh.b_s_t + (bwh.b_c_h - this.height()) / 2
 		});
-		this.after(mask(opts.bgcolor));
+		this.after(mask(opts));
 	};
 	// 遮罩层属性
 	$.fn.jmask.defaults = {
-		bgcolor : 'rgba(165, 165, 165, 0.8)'
+		bgcolor : '#eee',
+		opacity : 0.8
 	};
 
 	// 取消遮罩层
@@ -247,7 +252,10 @@
 		$msg_box.find("#" + div_msg_box_bottom.id).append($btn_ok);
 
 		if (opts.mask) {
-			$msg_box = mask(opts.maskcolor).append($msg_box);
+			$msg_box = mask({
+				bgcolor : opts.maskcolor,
+				opacity : opts.maskopacity
+			}).append($msg_box);
 		}
 		this.after($msg_box);
 	};
@@ -257,7 +265,8 @@
 		width : 320,
 		height : 240,
 		mask : true,
-		maskcolor : 'rgba(165, 165, 165, 0.8)'
+		maskcolor : '#eee',
+		maskopacity : 0.8
 	};
 
 	/**
@@ -293,7 +302,10 @@
 				$btn_cancel);
 
 		if (opts.mask) {
-			$msg_box = mask(opts.maskcolor).append($msg_box);
+			$msg_box = mask({
+				bgcolor : opts.maskcolor,
+				opacity : opts.maskopacity
+			}).append($msg_box);
 		}
 		this.after($msg_box);
 	};
@@ -303,6 +315,7 @@
 		width : 320,
 		height : 240,
 		mask : true,
-		maskcolor : 'rgba(165, 165, 165, 0.8)'
+		maskcolor : '#eee',
+		maskopacity : 0.8
 	};
 })(jQuery);

@@ -16,14 +16,16 @@
 >**options**: 该参数为对象类型。用来设置遮罩层默认全局属性,默认属性为：
 >
     $.fn.jmask.defaults = {
-    	bgcolor : 'rgba(165, 165, 165, 0.8)'
+    	bgcolor : '#eee',
+		opacity : 0.8
     };
 
 **Example**: 
 
     $("#jmaskDemo").jmask();
     $("#jmaskDemo").jmask({
-        bgcolor:'pink'
+        bgcolor:'pink',
+        opacity : 0.6
     });
 
 ###<div id='junmask'>junmask()</div>
@@ -47,7 +49,8 @@
             width : 320,
             height : 240,
             mask : true,
-            maskcolor : 'rgba(165, 165, 165, 0.8)'
+           	maskcolor : '#eee',
+			maskopacity : 0.8
     };
     
 **Example**:
@@ -57,7 +60,7 @@
         title : 'hello jalert', 
         width : 300, 
         height : 250, 
-        mask : false 
+        mask : false
     });
 
 ###<div id='jconfirm'>jconfirm(msg,url,options)</div>
@@ -73,7 +76,8 @@
         width : 320,
         height : 240,
         mask : true,
-        maskcolor : 'rgba(165, 165, 165, 0.8)'
+        maskcolor : '#eee',
+		maskopacity : 0.8
     };
 
 **Example**:
@@ -83,7 +87,8 @@
         title : 'hello jconfirm', 
         width : 400, 
         height : 300, 
-        maskcolor : 'pink' 
+        maskcolor : 'pink',
+        maskopacity : 0.9
     });
 
 
