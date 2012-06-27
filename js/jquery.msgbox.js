@@ -21,7 +21,7 @@
 		id : '_j_div_msg_box_',
 		css : {
 			"z-index" : "10000",
-			"position" : "absolute",
+			"position" : "fixed",
 			'border' : '2px solid #2484c2',
 			'background-color' : 'white',
 			'cursor' : 'default',
@@ -150,8 +150,8 @@
 	function msgBox(title, msg, width, height) {
 		var bwh = browser_width_high();
 		// 滚动条滚动过的宽+(可视窗口宽-消息框宽)/2
-		var x = bwh.b_s_l + (bwh.b_c_w - width) / 2;
-		var y = bwh.b_s_t + (bwh.b_c_h - height) / 2;
+		var x = (bwh.b_c_w - width) / 2;
+		var y = (bwh.b_c_h - height) / 2;
 		var $box_core = creatediv(div_msg_box.id, '', div_msg_box.css).css({
 			'left' : x,
 			'top' : y,
@@ -207,10 +207,10 @@
 		var bwh = browser_width_high();
 		this.css({
 			"z-index" : "100000",
-			"position" : "absolute",
+			"position" : "fixed",
 			"display" : "block",
-			'left' : bwh.b_s_l + (bwh.b_c_w - this.width()) / 2,
-			'top' : bwh.b_s_t + (bwh.b_c_h - this.height()) / 2
+			'left' :(bwh.b_c_w - this.width()) / 2,
+			'top' :(bwh.b_c_h - this.height()) / 2
 		});
 		this.after(mask(opts));
 	};
