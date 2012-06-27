@@ -9,7 +9,7 @@
 			"clear" : "both",
 			"float" : "left",
 			"z-index" : "10000",
-			"position" : "absolute",
+			"position" : "fixed",
 			"top" : "0px",
 			"left" : "0px",
 			"cursor" : "not-allowed",
