@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 (function($) {
 	// 蒙板div私有属性
@@ -77,7 +77,7 @@
 	};
 	/**
 	 * 创建div元素对象
-	 * 
+	 *
 	 * @param {string}
 	 *            id 元素id属性
 	 * @param {string}
@@ -85,7 +85,7 @@
 	 * @param {object}
 	 *            元素样式对象
 	 * @return
-	 * 
+	 *
 	 * <pre><code>
 	 * jQuery('&lt;div id=&quot;&quot; style='css'&gt;text&lt;/div&gt;')
 	 * </code></pre>
@@ -98,19 +98,20 @@
 	function mask_div() {
 		return creatediv(div_mask.id, '', div_mask.css);
 	}
+
 	// 消息框标题div
 	function msgBox_header(title) {
 		return creatediv(div_msg_box_header.id, title, div_msg_box_header.css);
 	}
+
 	// 消息框消息正文div
 	function msgBox_message(message) {
-		return creatediv(div_msg_box_message.id, message,
-				div_msg_box_message.css);
+		return creatediv(div_msg_box_message.id, message, div_msg_box_message.css);
 	}
+
 	// 消息框底部div
 	function msgBox_bottom() {
-		return $("<div id='" + div_msg_box_bottom.id + "'>").css(
-				div_msg_box_bottom.css);
+		return $("<div id='" + div_msg_box_bottom.id + "'>").css(div_msg_box_bottom.css);
 	}
 
 	function mask(opts) {
@@ -120,13 +121,14 @@
 			"width" : Math.max(bwh.b_c_w, bwh.b_s_w),
 			"height" : Math.max(bwh.b_c_h, bwh.b_s_h),
 			"background-color" : opts.bgcolor,
-			"opacity":opts.opacity
+			"opacity" : opts.opacity
 		});
 		return $mask;
 	}
+
 	/**
 	 * 消息框基本框架
-	 * 
+	 *
 	 * @param {string}
 	 *            title 消息标题
 	 * @param {mixed}
@@ -136,7 +138,7 @@
 	 * @param {int}
 	 *            height 消息框高
 	 * @result
-	 * 
+	 *
 	 * <pre><code>
 	 * jQuery('
 	 * 	&lt;div id=&quot;msgbox&quot;&gt;
@@ -165,9 +167,10 @@
 		$box_core.append(msgBox_bottom());
 		return $box_core;
 	}
+
 	/**
 	 * 消息框按钮.生成<a>name</a>代码，并绑定onclick事件
-	 * 
+	 *
 	 * @param {string}
 	 *            按钮显示名称
 	 * @param {function}
@@ -175,10 +178,9 @@
 	 * @return 返回jQuery('<a>name</a>')对象
 	 */
 	function msgBox_btn(name, fn) {
-		return $('<a>' + name + '</a>').css(div_msg_box_btn.css).bind("click",
-				fn);
+		return $('<a>' + name + '</a>').css(div_msg_box_btn.css).bind("click", fn);
 	}
-	
+
 	// 浏览器宽、高 ,滚动条宽、高,滚动条滚动过的高、宽
 	function browser_width_high() {
 		return {
@@ -186,21 +188,20 @@
 			b_c_h : document.documentElement.clientHeight,
 			b_s_w : document.documentElement.scrollWidth,
 			b_s_h : document.documentElement.scrollHeight,
-			b_s_t : document.documentElement.scrollTop
-					|| document.body.scrollTop,
-			b_s_l : document.documentElement.scrollLeft
-					|| document.body.scrollLeft
+			b_s_t : document.documentElement.scrollTop || document.body.scrollTop,
+			b_s_l : document.documentElement.scrollLeft || document.body.scrollLeft
 
 		};
 	}
+
 	/**
 	 * 获取遮罩层或者消息框div对象.这里使用原始方法获取指定元素id是为了方便返回。<br/>
 	 * 如果使用jQuery的$(#id)获取，则无法使用||操作.因为$(#id)，当id不存在时返回[]而非null
 	 */
 	function getMaskOrMsgBoxDiv() {
-		return $(document.getElementById(div_mask.id)
-				|| document.getElementById(div_msg_box.id));
+		return $(document.getElementById(div_mask.id) || document.getElementById(div_msg_box.id));
 	}
+
 	// 遮罩层
 	$.fn.jmask = function(options) {
 		var opts = $.extend({}, $.fn.jmask.defaults, options);
@@ -209,8 +210,8 @@
 			"z-index" : "100000",
 			"position" : "fixed",
 			"display" : "block",
-			'left' :(bwh.b_c_w - this.width()) / 2,
-			'top' :(bwh.b_c_h - this.height()) / 2
+			'left' : (bwh.b_c_w - this.width()) / 2,
+			'top' : (bwh.b_c_h - this.height()) / 2
 		});
 		this.after(mask(opts));
 	};
@@ -231,7 +232,7 @@
 
 	/**
 	 * 消息div
-	 * 
+	 *
 	 * @param {string}
 	 *            msg 消息内容
 	 * @param {object}
@@ -271,7 +272,7 @@
 
 	/**
 	 * 确认消息div
-	 * 
+	 *
 	 * @param {string}
 	 *            msg 消息内容
 	 * @param {string}
@@ -298,8 +299,7 @@
 				$(this).detach();
 			});
 		});
-		$msg_box.find("#" + div_msg_box_bottom.id).append($btn_ok).append(
-				$btn_cancel);
+		$msg_box.find("#" + div_msg_box_bottom.id).append($btn_ok).append($btn_cancel);
 
 		if (opts.mask) {
 			$msg_box = mask({
@@ -318,4 +318,4 @@
 		maskcolor : '#eee',
 		maskopacity : 0.8
 	};
-})(jQuery);
+})(jQuery); 
