@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery MsgBox Plugin Demo</title>
+		<style type="text/css">
+			td {
+				line-height: 30px;
+			}
+
+			.table2 {
+				border-width: 1px solid #000;
+				width: 100%;
+				border-collapse: collapse;
+				text-align: left;
+			}
+
+			.table2 th, .table2 td {
+				border: 1px solid #000;
+				padding: 2px 10px;
+			}
+
+			.method {
+				font-size: 28px;
+				font-weight: bold;
+			}
+
+			.demo {
+				font-size: 18px;
+				line-height: 30px;
+			}
+
+			.pre_code {
+				display: none;
+			}
+
+			code {
+				color: teal;
+				font-size: 20px;
+			}
+
+			blockquote {
+				background-color: #eeeeee;
+			}
+
+			pre {
+				margin: 0px 0px;
+				padding: 0px 0px;
+			}
+
+			dt {
+				padding: 5px 5px;
+				line-height: 40px;
+			}
+
+			blockquote {
+				border: 1px dotted red;
+			}
+
+			#s_code label {
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			#jmaskDemo {
+				width: 300px;
+				height: 60px;
+				border: 2px solid red;
+				line-height: 60px;
+				background-color: white;
+				display: none;
+				cursor: pointer;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="js/jquery.msgbox.js"></script>
+		<script>
+            function presourcecode(method) {
+                $("#pre_code_" + method).slideToggle();
+            };
+            $(function() {
+                $("#jmask_Demo").bind("click", function() {
+                    var _bgcolor = $("#_bgcolor").val();
+                    if (_bgcolor) {
+                        $("#jmaskDemo").jmask({
+                            bgcolor : _bgcolor
+                        });
+                    } else {
+                        $("#jmaskDemo").jmask();
+                    }
+                });
+
+                $("#jmaskDemo").bind("click", function() {
+                    $("#jmaskDemo").junmask();
+                });
+                $("#jalertDemo").bind("click", function() {
+                    $(this).jalert('jalert demo 测试');
+                });
+
+                $("#jalertDemo1").bind("click",function(){
+			$(this).jalert('jalert demo 测试',{ 
+				title　: '自定义标题', 
+				width : 300, 
+				height : 250, 
+				mask : false
+			})
+		});
+		$("#jconfirmDemo").bind("click",function(){
+			$(this).jconfirm('jconfirm demo 测试','http://www.163.com');
+		});
+		$("#jconfirmDemo1").bind("click",function(){
+			$(this).jconfirm('jconfirm demo 测试',null,{ 
+				title　: '自定义标题', 
+				width : 400, 
+				height : 300, 
+				maskcolor : 'pink',
+				maskopacity : 0.9
+			})
+		});
+            });
+		</script>
+	</head>
+	<body>
+		<h2>jQuery MsgBox Plugin 提供四个插件方法：</h2>
+		<ol>
+			<li>
+				<a href="#mask">
+				<code>
+					jmask
+				</code>遮罩层</a>
+			</li>
+			<li>
+				<a href="#unmask">
+				<code>
+					junmask
+				</code>关闭遮罩层</a>
+			</li>
+			<li>
+				<a href="#jalert">
+				<code>
+					jalert
+				</code>基于div的消息提醒框</a>
+			</li>
+			<li>
+				<a href="#jconfirm">
+				<code>
+					jconfirm
+				</code>基于div的消息确认框</a>
+			</li>
+		</ol>
+
+		<!-- jmask -->
+		<dl>
+			<dt>
+				<a id='mask'>
+				<code class="method">
+					jmask(options)
+				</code> </a>
+			</dt>
+			<dd>
+				移动目标元素对象，使其显示在遮罩层正中央。
+				<code>
+					jmask
+				</code>
+				接受一个参数
+				<br/>
+				<table>
+					<tr>
+						<td width='80px'><strong>options</strong></td>
+						<td>
+						<table class="table2">
+							<caption>
+								该参数为对象类型。用来设置遮罩层默认全局属性
+							</caption>
+							<tr>
+								<th>属性</th>
+								<th>类型</th>
+								<th>默认值</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<td>bgcolor</td>
+								<td>string</td>
+								<td>'#eee'</td>
+								<td>遮罩层背景色</td>
+							</tr>
+							<tr>
+								<td>opacity</td>
+								<td>float</td>
+								<td>0.8</td>
+								<td>遮罩层背景透明度透明度(0-1)</td>
+							</tr>
+						</table></td>
+					</tr>
+				</table>
+				<p>
+					<strong>Example:</strong>
+				</p>
+				<blockquote>
+					<code class="demo">
+						$("#jmaskDemo").jmask();
+						<br />
+						$("#jmaskDemo").jmask({bgcolor:'pink'});
+					</code>
+				</blockquote>
+
+				<h1 id="jmaskDemo">Jmask Plugin Demo</h1>
+				<p>
+					<strong>Demo</strong>: <label>bgcolor:</label>
+					<select id='_bgcolor'>
+						<option value=''>default</option>
+						<option value='pink'>pink</option>
+						<option value='rgb(22,233,233)'>rgb(22,233,233)</option>
+					</select>
+					<button id="jmask_Demo">
+						Jmask Demo
+					</button>
+				</p>
+				<p id='s_code'>
+					<label title="click me" onclick="presourcecode('mask');">SourceCode:</label>
+				</p>
+				<div id='pre_code_mask' class="pre_code">
+					<blockquote>
+						<pre>
+					<code>
+		$("#jmask_Demo").bind("click", function() {
+			var _bgcolor = $("#_bgcolor").val();
+			if (_bgcolor) {
+				$("#jmaskDemo").jmask({
+					bgcolor : _bgcolor
+				});
+			} else {
+				$("#jmaskDemo").jmask();
+			}
+
+		});
+					</code>
+				</pre>
+					</blockquote>
+				</div>
+			</dd>
+		</dl>
+
+		<!-- junmask -->
+
+		<dl>
+			<dt>
+				<a id='unmask'>
+				<code class="method">
+					junmask()
+				</code> </a>
+			</dt>
+			<dd>
+				取消使用
+				<code>
+					jmask
+				</code>
+				方法遮罩的目标元素,并隐藏目标元素。该方法不接受参数
+				<p>
+					<strong>Example:</strong>
+				</p>
+				<blockquote>
+					<code class="demo">
+						$("#jmaskDemo").junmask();
+					</code>
+				</blockquote>
+				<p id='s_code'>
+					<label title="click me" onclick="presourcecode('unmask');">SourceCode:</label>
+				</p>
+				<div id='pre_code_unmask' class="pre_code">
+					<blockquote>
+						<pre>
+					<code>
+		$("#jmaskDemo").bind("click", function() {
+			$("#jmaskDemo").junmask();
+		});
+		</code>
+				</pre>
+					</blockquote>
+				</div>
+			</dd>
+		</dl>
+
+		<!-- jalert -->
+
+		<dl>
+			<dt>
+				<a id='jalert'>
+				<code class="method">
+					jalert(msg,options)
+				</code> </a>
+			</dt>
+			<dd>
+				打开一个消息提示框。
+				<code>
+					jalert
+				</code>
+				接受两个参数
+				<br/>
+				<table>
+					<tr>
+						<td width='80px'><strong>msg</strong></td>
+						<td>消息框显示的消息內容</td>
+					</tr>
+					<tr>
+						<td><strong>options</strong></td>
+						<td>
+						<table class="table2">
+							<caption>
+								该参数为对象类型，用来设置消息框全局属性
+							</caption>
+							<tr>
+								<th>属性</th>
+								<th>类型</th>
+								<th>默认值</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<td width='60px'>title</td>
+								<td>string</td>
+								<td>'消息框'</td>
+								<td>消息框标题</td>
+							</tr>
+							<tr>
+								<td>width</td>
+								<td>int</td>
+								<td>320</td>
+								<td>消息框宽</td>
+							</tr>
+							<tr>
+								<td>height</td>
+								<td>int</td>
+								<td>240</td>
+								<td>消息框高</td>
+							</tr>
+							<tr>
+								<td>mask</td>
+								<td>boolean</td>
+								<td>true</td>
+								<td>是否需要遮罩层</td>
+							</tr>
+							<tr>
+								<td>maskcolor</td>
+								<td>string</td>
+								<td>'#eee'</td>
+								<td>遮罩层背景色。当mask为true时有效</td>
+							</tr>
+							<tr>
+								<td>maskopacity</td>
+								<td>float</td>
+								<td>0.8</td>
+								<td>遮罩层背景透明度(0-1)。当mask为true时有效</td>
+							</tr>
+						</table></td>
+					</tr>
+				</table>
+				<p>
+					<strong>Example:</strong>
+				</p>
+				<blockquote>
+					<code class="demo">
+						$("#jalertDemo").jalert('jalert demo 测试');
+						<br />
+						$("#jalertDemo").jalert('jalert demo 测试',{ title : 'hello jalert',
+						width : 300, height : 250, mask : false });
+					</code>
+				</blockquote>
+				<p>
+					<strong>Demo</strong>:
+					<button id="jalertDemo">
+						JAlert Demo
+					</button>
+					<button id="jalertDemo1">
+						JAlert Demo Use Options
+					</button>
+
+				</p>
+				<p id='s_code'>
+					<label title="click me" onclick="presourcecode('alert');">SourceCode:</label>
+				</p>
+				<div id='pre_code_alert' class="pre_code">
+					<blockquote>
+						<pre>
+					<code>
+		$("#jalertDemo").bind("click",function(){
+			$(this).jalert('jalert demo 测试');
+		});
+		$("#jalertDemo1").bind("click",function(){
+			$(this).jalert('jalert demo 测试',{ 
+				title　: '自定义标题', 
+				width : 300, 
+				height : 250, 
+				mask : false
+			});
+		});
+					</code>
+				</pre>
+					</blockquote>
+				</div>
+			</dd>
+		</dl>
+
+		<!-- jconfirm -->
+
+		<dl>
+			<dt>
+				<a id='jconfirm'>
+				<code class="method">
+					jconfirm(msg,url,options)
+				</code> </a>
+			</dt>
+			<dd>
+				打开一个消息确认框。
+				<code>
+					jalert
+				</code>
+				接受三个参数
+				<br/>
+				<table>
+					<tr>
+						<td width='80px'><strong>msg</strong></td>
+						<td>消息框显示的消息內容</td>
+					</tr>
+					<tr>
+						<td width='80px'><strong>url</strong></td>
+						<td>消息确认后的跳转地址。使用
+						<code>
+							window.local.href
+						</code>跳转 </td>
+					</tr>
+					<tr>
+						<td><strong>options</strong></td>
+						<td>
+						<table class="table2">
+							<caption>
+								该参数为对象类型，用来设置消息确认框全局属性
+							</caption>
+							<tr>
+								<th>属性</th>
+								<th>类型</th>
+								<th>默认值</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<td width='60px'>title</td>
+								<td>string</td>
+								<td>'消息框'</td>
+								<td>消息框标题</td>
+							</tr>
+							<tr>
+								<td>width</td>
+								<td>int</td>
+								<td>320</td>
+								<td>消息框宽</td>
+							</tr>
+							<tr>
+								<td>height</td>
+								<td>int</td>
+								<td>240</td>
+								<td>消息框高</td>
+							</tr>
+							<tr>
+								<td>mask</td>
+								<td>boolean</td>
+								<td>true</td>
+								<td>是否需要遮罩层</td>
+							</tr>
+							<tr>
+								<td>maskcolor</td>
+								<td>string</td>
+								<td>'#eee'</td>
+								<td>遮罩层背景色。当mask为true时有效</td>
+							</tr>
+							<tr>
+								<td>maskopacity</td>
+								<td>float</td>
+								<td>0.8</td>
+								<td>遮罩层背景透明度(0-1)。当mask为true时有效</td>
+							</tr>
+						</table></td>
+					</tr>
+				</table>
+				<p>
+					<strong>Example:</strong>
+				</p>
+				<blockquote>
+					<code class="demo">
+						$("#jconfirmDemo").jconfirm('jconfirm demo
+						测试','http://www.163.com');
+						<br />
+						$("#jconfirmDemo").jconfirm('jconfirm demo 测试',null,{ title :
+						'hello jconfirm', width : 400, height : 300, maskcolor : 'pink',maskopacity : 0.9 });
+					</code>
+				</blockquote>
+				<p>
+					<strong>Demo</strong>:
+					<button id="jconfirmDemo">
+						JConfirm Demo
+					</button>
+					<button id="jconfirmDemo1">
+						JConfirm Demo Use Options
+					</button>
+
+				</p>
+				<p id='s_code'>
+					<label title="click me" onclick="presourcecode('confirm');">SourceCode:</label>
+				</p>
+				<div id='pre_code_confirm' class="pre_code">
+					<blockquote>
+						<pre>
+					<code>
+		$("#jconfirmDemo").bind("click",function(){
+			$(this).jconfirm('jconfirm demo 测试','http://www.163.com');
+		});
+		$("#jconfirmDemo1").bind("click",function(){
+			$(this).jconfirm('jconfirm demo 测试',null,{ 
+				title　: '自定义标题', 
+				width : 400, 
+				height : 300, 
+				maskcolor : 'pink',
+				maskopacity : 0.9
+			});
+		});
+					</code>
+				</pre>
+					</blockquote>
+				</div>
+			</dd>
+		</dl>
+	</body>
+</html>
